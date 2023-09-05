@@ -49,3 +49,8 @@ names(tidydata) <- gsub("BodyBody","Body", names(tidydata))
 
 ## return dataframe with mean of each variable by subject and activity
 meandata <- tidydata %>% group_by(subject,activity) %>% summarise_all(mean)
+
+## write to disk
+if (!file.exists("meandata.txt")) {
+  write.table(meandata,"meandata.txt",row.names = FALSE)
+}
